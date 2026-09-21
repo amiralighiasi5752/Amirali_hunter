@@ -2,6 +2,10 @@
   {
     "symbol": "PEPEUSDT",
     "signal_time": "2026-09-21 18:57",
-    "status": "new"
+    "status": "waiting_entry",
+    "signal_price": 4.88e-06,
+    "entry_target": 4.29e-06,
+    "stop_loss": 3.8e-06,
+    "take_profit": 5.29e-06
   }
 ]
