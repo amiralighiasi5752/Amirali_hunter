@@ -1,0 +1,38 @@
+name: Check Signals
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot logic
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          CAPITAL: ${{ vars.CAPITAL }}
+          RISK_PCT: ${{ vars.RISK_PCT }}
+        run: python bot_logic.py
+
+      - name: Commit updated watchlist
+        run: |
+          git config user.name "signal-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add watchlist.json
+          git diff --staged --quiet || git commit -m "update watchlist [skip ci]"
+          git push
