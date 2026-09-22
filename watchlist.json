@@ -9,7 +9,8 @@
     "take_profit": 5.29e-06
   },
   {
-  "symbol": "QUSDT",
-  "signal_time": "2026-08-16 14:34",
-  "status": "new"
+    "symbol": "QUSDT",
+    "signal_time": "2026-08-16 14:34",
+    "status": "new"
   }
+]
